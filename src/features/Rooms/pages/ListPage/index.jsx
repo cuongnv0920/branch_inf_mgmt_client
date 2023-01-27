@@ -1,6 +1,6 @@
 import { Box, Container, Grid, Paper } from "@material-ui/core";
+import RoomList from "features/Rooms/components/RoomList";
 import React from "react";
-import RoomList from "../../components/RoomList";
 
 ListPage.propTypes = {};
 

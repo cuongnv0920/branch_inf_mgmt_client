@@ -37,7 +37,7 @@ function DeleteForm(props) {
 
       <form onSubmit={form.handleSubmit(handleSubmit)}>
         <div className="deleteUser__content">
-          <p>{`Bạn có chắc chắn muốn xóa phòng/ ban: "${selected.email}"`}</p>
+          <p>{`Bạn có chắc chắn muốn xóa người dùng: "${selected.email}"`}</p>
         </div>
 
         <Button

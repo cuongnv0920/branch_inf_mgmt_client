@@ -1,11 +1,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Avatar, Button, CircularProgress } from "@material-ui/core";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
+import { InputField, PasswordField } from "components";
 import PropTypes from "prop-types";
 import React from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { Input, Password } from "../../../../components/inputField";
 import "./styles.scss";
 
 LoginForm.propTypes = {
@@ -43,8 +43,8 @@ function LoginForm(props) {
       </Avatar>
 
       <form onSubmit={form.handleSubmit(handleSubmit)}>
-        <Input name="username" label="Tên đăng nhập" form={form} />
-        <Password name="password" label="Mật khẩu" form={form} />
+        <InputField name="username" label="Tên đăng nhập" form={form} />
+        <PasswordField name="password" label="Mật khẩu" form={form} />
 
         <Button
           className="dialogButtonSave"
@@ -62,8 +62,8 @@ function LoginForm(props) {
       </form>
 
       <div className="login__footer">
-        <h5>Hệ thống quản lý Website nội bộ chi nhánh</h5>
-        <h5>Copyright © 2022 | BIDV - Chi nhánh Gia Lâm | Version 1.1</h5>
+        <h5>Hệ thống quản lý Người dùng Chi nhánh</h5>
+        <h5>Copyright © 2023 | Version 1.1</h5>
       </div>
     </div>
   );

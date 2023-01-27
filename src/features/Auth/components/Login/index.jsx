@@ -1,10 +1,10 @@
 import { unwrapResult } from "@reduxjs/toolkit";
+import { login } from "features/Auth/authSlice";
 import { useSnackbar } from "notistack";
 import PropTypes from "prop-types";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { login } from "../../authSlice";
 import LoginForm from "../LoginForm";
 
 Login.propTypes = {
@@ -27,7 +27,7 @@ function Login(props) {
         closeDialog();
       }
 
-      navigate("/category", { replace: true });
+      navigate("/room", { replace: true });
     } catch (error) {
       enqueueSnackbar(error.message, { variant: "error" });
     }

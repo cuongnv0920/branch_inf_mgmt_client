@@ -8,16 +8,16 @@ import {
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
+import { levelApi } from "api";
+import { removeSelected, selected } from "features/Levels/levelSlice";
 import MaterialTable from "material-table";
+import { useSnackbar } from "notistack";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import Moment from "react-moment";
-import { levelApi } from "../../../../api/index";
+import { useDispatch } from "react-redux";
 import Create from "../Create";
 import Delete from "../Delete";
 import Edit from "../Edit";
-import { useSnackbar } from "notistack";
-import { removeSelected, selected } from "../../levelSlice";
 
 LevelList.propTypes = {};
 
@@ -157,7 +157,7 @@ function LevelList(props) {
           paging: true,
           addRowPosition: "first",
           showSelectAllCheckbox: false,
-          maxBodyHeight: 350,
+          maxBodyHeight: 580,
         }}
       />
 

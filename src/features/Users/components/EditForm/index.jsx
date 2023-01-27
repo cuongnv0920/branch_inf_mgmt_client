@@ -1,3 +1,4 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Button,
   FormControlLabel,
@@ -7,23 +8,20 @@ import {
   Radio,
   Typography,
 } from "@material-ui/core";
-import React from "react";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { useForm } from "react-hook-form";
-import PropTypes from "prop-types";
+import { levelApi, roomApi } from "api";
 import {
   DateField,
-  Input,
-  Password,
+  InputField,
+  PasswordField,
   RadioField,
   SelectField,
-} from "../../../../components/inputField";
-import "./styles.scss";
+} from "components";
+import PropTypes from "prop-types";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
-import { useState } from "react";
-import { useEffect } from "react";
-import { levelApi, roomApi } from "../../../../api";
+import * as yup from "yup";
+import "./styles.scss";
 
 EditForm.propTypes = {
   onSubmit: PropTypes.func,
@@ -55,7 +53,7 @@ function EditForm(props) {
 
   useEffect(() => {
     const fetchRooms = async () => {
-      const rooms = await roomApi.list();
+      const rooms = await roomApi.getAll();
       setRooms(rooms);
     };
     fetchRooms();
@@ -63,7 +61,7 @@ function EditForm(props) {
 
   useEffect(() => {
     const fetchLevel = async () => {
-      const levels = await levelApi.list();
+      const levels = await levelApi.getAll();
       setLevels(levels);
     };
 
@@ -119,19 +117,19 @@ function EditForm(props) {
       <form onSubmit={form.handleSubmit(handleSubmit)}>
         <Grid container spacing={2}>
           <Grid item xs={6} md={6} sm={6}>
-            <Input name="fullName" label="Họ và tên" form={form} />
+            <InputField name="fullName" label="Họ và tên" form={form} />
           </Grid>
           <Grid item xs={6} md={6} sm={6}>
-            <Input name="email" label="Địa chỉ email" form={form} />
+            <InputField name="email" label="Địa chỉ email" form={form} />
           </Grid>
         </Grid>
 
         <Grid container spacing={2}>
           <Grid item xs={6} md={6} sm={6}>
-            <Password name="password" label="Mật khẩu" form={form} />
+            <PasswordField name="password" label="Mật khẩu" form={form} />
           </Grid>
           <Grid item xs={6} md={6} sm={6}>
-            <Password
+            <PasswordField
               name="retypePassword"
               label="Xác nhận mật khẩu"
               form={form}
@@ -158,10 +156,14 @@ function EditForm(props) {
 
         <Grid container spacing={2}>
           <Grid item xs={6} md={6} sm={6}>
-            <Input name="phone" label="Số điện thoại di động" form={form} />
+            <InputField
+              name="phone"
+              label="Số điện thoại di động"
+              form={form}
+            />
           </Grid>
           <Grid item xs={6} md={6} sm={6}>
-            <Input name="ext" label="Số điện thoại nội bộ" form={form} />
+            <InputField name="ext" label="Số điện thoại nội bộ" form={form} />
           </Grid>
         </Grid>
 

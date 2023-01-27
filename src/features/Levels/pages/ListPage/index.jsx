@@ -1,6 +1,6 @@
 import { Box, Container, Grid, Paper } from "@material-ui/core";
+import LevelList from "features/Levels/components/LevelList";
 import React from "react";
-import LevelList from "../../components/LevelList";
 
 ListPage.propTypes = {};
 

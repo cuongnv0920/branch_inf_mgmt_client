@@ -1,6 +1,6 @@
 import { Box, Container, Grid, Paper } from "@material-ui/core";
+import Login from "features/Auth/components/Login";
 import React from "react";
-import Login from "../../components/Login";
 
 ListPage.propTypes = {};
 

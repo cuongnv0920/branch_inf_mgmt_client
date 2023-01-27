@@ -8,16 +8,16 @@ import {
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
+import { userApi } from "api";
+import { removeSelected, selected } from "features/Users/userSlice";
 import MaterialTable from "material-table";
+import { useSnackbar } from "notistack";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import Moment from "react-moment";
-import { userApi } from "../../../../api/index";
+import { useDispatch } from "react-redux";
 import Create from "../Create";
 import Delete from "../Delete";
 import Edit from "../Edit";
-import { useSnackbar } from "notistack";
-import { removeSelected, selected } from "../../userSlice";
 
 UserList.propTypes = {};
 
@@ -49,7 +49,7 @@ const columns = [
   },
   {
     title: "Nhóm quyền",
-    field: "role",
+    field: "roles[0]",
     cellStyle: { whiteSpace: "nowrap" },
   },
   {
@@ -175,7 +175,7 @@ function UserList(props) {
           paging: true,
           addRowPosition: "first",
           showSelectAllCheckbox: false,
-          maxBodyHeight: 350,
+          maxBodyHeight: 580,
         }}
       />
 

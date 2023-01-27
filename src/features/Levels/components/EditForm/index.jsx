@@ -1,12 +1,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Typography } from "@material-ui/core";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { InputField } from "components";
 import PropTypes from "prop-types";
-import React from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import * as yup from "yup";
-import { Input } from "../../../../components/inputField";
 
 EditForm.propTypes = {
   onSubmit: PropTypes.func,
@@ -46,8 +45,8 @@ function EditForm(props) {
       </div>
 
       <form onSubmit={form.handleSubmit(handleSubmit)}>
-        <Input name="name" label="Chức danh" form={form} />
-        <Input name="sort" type="number" label="Số sắp xếp" form={form} />
+        <InputField name="name" label="Chức danh" form={form} />
+        <InputField name="sort" type="number" label="Số sắp xếp" form={form} />
 
         <Button
           className="dialogButtonSave"

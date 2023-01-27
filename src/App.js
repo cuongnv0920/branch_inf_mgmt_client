@@ -1,15 +1,11 @@
 import { makeStyles } from "@material-ui/core";
-import { Route, Routes } from "react-router-dom";
-import { Header, Menu } from "./components/common";
-import Category from "./features/Category";
-import Level from "./features/Levels";
-import Link from "./features/Links";
-import Margin from "./features/Margin";
-import Room from "./features/Rooms";
-import User from "./features/Users";
-import Deposit from "./features/Deposit";
 import { useSelector } from "react-redux";
-import Auth from "./features/Auth";
+import { Route, Routes } from "react-router-dom";
+import { Drawer } from "components";
+import Auth from "features/Auth";
+import Level from "features/Levels";
+import Room from "features/Rooms";
+import User from "features/Users";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,30 +28,13 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const logged = useSelector((state) => state.auth.current);
-
-  const isLogged = () => {
-    if (logged.role === "admin") {
-      return true;
-    } else {
-      return false;
-    }
-  };
+  const isLogged = !!logged._id;
   const classes = useStyles();
 
   const routes = [
     {
-      path: "category/*",
-      element: <Category />,
-      role: "admin",
-    },
-    {
       path: "room/*",
       element: <Room />,
-      role: "admin",
-    },
-    {
-      path: "link/*",
-      element: <Link />,
       role: "admin",
     },
     {
@@ -64,36 +43,29 @@ function App() {
       role: "admin",
     },
     {
-      path: "margin/*",
-      element: <Margin />,
-      role: "admin",
-    },
-    {
       path: "user/*",
       element: <User />,
-      role: "admin",
-    },
-    {
-      path: "deposit/*",
-      element: <Deposit />,
       role: "admin",
     },
   ];
 
   return (
     <div>
-      {!isLogged() && <Auth />}
+      {!isLogged && <Auth />}
 
-      {isLogged() && (
+      {isLogged && (
         <div className={classes.root}>
-          <Header />
-          <Menu />
+          <Drawer />
           <main className={classes.content}>
             <div className={classes.toolbar} />
 
             <Routes>
-              {routes.map((route, index) => (
-                <Route key={index} path={route.path} element={route.element} />
+              {routes.map((route) => (
+                <Route
+                  key={route.path}
+                  path={route.path}
+                  element={route.element}
+                />
               ))}
             </Routes>
           </main>

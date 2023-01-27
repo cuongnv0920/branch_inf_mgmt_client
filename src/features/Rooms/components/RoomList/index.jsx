@@ -12,12 +12,12 @@ import MaterialTable from "material-table";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Moment from "react-moment";
-import { roomApi } from "../../../../api/index";
-import Create from "../Create";
-import { removeSelected, selected } from "../../roomSlice";
-import Delete from "../Delete";
-import Edit from "../Edit";
 import { useSnackbar } from "notistack";
+import { removeSelected, selected } from "features/Rooms/roomSlice";
+import { roomApi } from "api";
+import Create from "../Create";
+import Edit from "../Edit";
+import Delete from "../Delete";
 
 RoomList.propTypes = {};
 
@@ -164,7 +164,7 @@ function RoomList(props) {
           paging: true,
           addRowPosition: "first",
           showSelectAllCheckbox: false,
-          maxBodyHeight: 350,
+          maxBodyHeight: 580,
         }}
       />
 
