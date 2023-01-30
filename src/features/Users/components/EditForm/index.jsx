@@ -17,7 +17,7 @@ import {
   SelectField,
 } from "components";
 import PropTypes from "prop-types";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import * as yup from "yup";
@@ -29,6 +29,7 @@ EditForm.propTypes = {
 
 function EditForm(props) {
   const selected = useSelector((state) => state.user);
+  console.log(selected);
 
   const [rooms, setRooms] = useState([]);
   const [levels, setLevels] = useState([]);
@@ -176,8 +177,8 @@ function EditForm(props) {
               value={sex}
               form={form}
             >
-              <FormControlLabel value="nam" control={<Radio />} label="Nam" />
-              <FormControlLabel value="nu" control={<Radio />} label="Nữ" />
+              <FormControlLabel value="Mr" control={<Radio />} label="Nam" />
+              <FormControlLabel value="Ms" control={<Radio />} label="Nữ" />
             </RadioField>
           </Grid>
 

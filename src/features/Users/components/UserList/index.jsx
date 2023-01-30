@@ -49,7 +49,7 @@ const columns = [
   },
   {
     title: "Nhóm quyền",
-    field: "roles[0]",
+    field: "role",
     cellStyle: { whiteSpace: "nowrap" },
   },
   {

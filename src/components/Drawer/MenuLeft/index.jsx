@@ -16,8 +16,8 @@ import clsx from "clsx";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { Footer } from "../Footer";
 import { closeMenu } from "../drawerSlice";
+import Footer from "../Footer";
 import "./styles.scss";
 
 const menuList = [
