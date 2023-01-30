@@ -1,14 +1,21 @@
-import { IconButton, makeStyles } from "@material-ui/core";
+import {
+  IconButton,
+  ListItemIcon,
+  makeStyles,
+  Menu,
+  MenuItem,
+} from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+import AccountCircle from "@material-ui/icons/AccountCircle";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import MenuIcon from "@material-ui/icons/Menu";
 import clsx from "clsx";
-import React from "react";
+import { logout } from "features/Auth/authSlice";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../../../features/Auth/authSlice";
 import { openMenu } from "../drawerSlice";
 
 Header.propTypes = {};
@@ -57,17 +64,29 @@ const useStyle = makeStyles((theme) => ({
     display: "none",
   },
 
-  logout: {
-    color: "#ff3d00",
+  iconButton: {
+    color: "#47544D",
+  },
+
+  menuItem: {
+    fontFamily: "'Muli', sans-serif",
   },
 }));
 
 function Header(props) {
   const classes = useStyle();
-
   const openDrawer = useSelector((state) => state.drawer);
   const dispath = useDispatch();
   const navigate = useNavigate();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleOpenMenuAccount = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseMenuAccount = () => {
+    setAnchorEl(null);
+  };
 
   const handleOpenMenu = () => {
     const action = openMenu();
@@ -77,7 +96,7 @@ function Header(props) {
   const handleLogout = () => {
     const action = logout();
     dispath(action);
-
+    setAnchorEl(null);
     navigate("/", { replace: true });
   };
 
@@ -105,12 +124,36 @@ function Header(props) {
         </Typography>
 
         <IconButton
-          title="Thoát"
-          onClick={handleLogout}
-          className={classes.logout}
+          aria-label="account of current user"
+          aria-controls="menu-appbar"
+          aria-haspopup="true"
+          onClick={handleOpenMenuAccount}
+          className={classes.iconButton}
         >
-          <ExitToAppIcon />
+          <AccountCircle />
         </IconButton>
+        <Menu
+          id="menu-appbar"
+          anchorEl={anchorEl}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          open={open}
+          onClose={handleCloseMenuAccount}
+        >
+          <MenuItem onClick={handleLogout} className={classes.menuItem}>
+            <ListItemIcon style={{ minWidth: "45px" }}>
+              <ExitToAppIcon style={{ color: "#f50057" }} fontSize="small" />
+            </ListItemIcon>
+            Thoát
+          </MenuItem>
+        </Menu>
       </Toolbar>
     </AppBar>
   );
